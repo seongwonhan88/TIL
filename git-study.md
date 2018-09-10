@@ -41,3 +41,15 @@ git은 총 4단계의 단계를 활용하여 버전 관리를 하는데 이는 �
 
 ## 처음 thread 는 master
 
+branch out 하기 전까지는 master thread 라고 이해하면 된다. remote저장소와 진행하는 작업이 `pull`,`push`,`fetch`이건간에 상관없이 저장소 별명(대부분 처음할 때는 origin)과 master를 기억하고 아래와 같은 입력을 통해 동기화를 진행한다 
+
+~~~
+$ git pull origin master 
+# remote 저장소에 있는 모든 자료들을 가져와서 local보다 진도가 많이 나가 있으면 저장하고 동기화
+
+$ git push origin master
+# local에 있는 자료를 remote 에 있는 저장소로 동기화. branch 를 만들어가 pull request를 해야할 경우도 있음
+
+$ git fetch origin master
+# remote 와 local 비교. 동기화를 위한 추가 merge가 필요하다
+~~~

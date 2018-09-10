@@ -1,0 +1,84 @@
+# Fast Campus 1,2일차 교육내용
+## 에디터 설치
+### Atom or Visual Studio
+수업에서 요구하는 환경에 맞추어 선택하면 된다. 패스트캠퍼스 수강 전에 유튜브 강의를 많이 들어보았는데, 그때도 Atom을 많이 권장하였음.
+###
+
+- [여기](https://atom.io)를 클릭하여 Atom 다운받기
+- [여기](https://code.visualstudio.com)를 클릭하여 Visual Studio 다운받기
+
+## Emmet 설치하기
+### 에디터 설치 후 
+- packages > settings view 를 오픈하여 **+install** 로 이동
+- "Emmet"을 검색하여 설치하면 된다.
+
+## Emmet 간단한 활용
+
+Emmet의 가장 큰 장점은 HTML 코드들을 하나하나 입력할 필요가 없다
+
+### 사용 로직 및 예시
+
+일정한 패턴이 있는 경우 '>', '+', '^', '#', '.'의 기호들을 사용하여 많은 양의 코드들을 한줄로 출력할 수 있다. 
+
+> 예) html:5[tab]을 입력하면 아래와 같은 결과가 출력된다.
+
+~~~
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+~~~
+
+> 예) table>(tr>td\*3)\*3[tab] 을 입력하면 3x3테이블을 생성한다
+
+~~~
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+~~~
+> 예) '\#'은 ID, ' . '은 Class를 지정한다. div#id-name.class-name[tab]은 아래와 같은 코드를 생성한다
+
+~~~
+<div id="id-name" class="class-name"></div>
+~~~
+>예) '>'는 하위 '^'는 상위단계를 의미한다. 'div>ol>li\*3^ul>li*3'은 아래와 같은 코드를 생성한다.
+
+~~~
+<div>
+  <ul>
+    <li></li>
+    <li></li>
+  </ul>
+  <ol>
+    <li></li>
+    <li></li>
+  </ol>
+</div>
+~~~
+이와 같이 손이 많이 갈 수 있는 코드들을 제법 쉽고 빠르게 생성할 수 있으며, 오타 또한 줄일 수 있어서 매우 유용하다.
+### 추가내용
+위 예시 외에도 Emmet의 기능들은 다양하며 자세한 내용은 [Documentation](https://docs.emmet.io/abbreviations/syntax/)을 참고하면 확인이 가능하다.
+
+**Emmet으로 HTML코딩을 한줄로 출력을 할 수 있지만, 적당한 수준에서 효과적으로 사용하는 스킬이 필요하다.**

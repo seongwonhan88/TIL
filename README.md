@@ -1,2 +1,3 @@
 # TIL
-Today I learned
+Today I learned  
+week 2: how to use git(in progress)

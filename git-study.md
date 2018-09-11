@@ -53,3 +53,5 @@ $ git push origin master
 $ git fetch origin master
 # remote 와 local 비교. 동기화를 위한 추가 merge가 필요하다
 ~~~
+
+**git co-work will be separately filed and added in this repository**

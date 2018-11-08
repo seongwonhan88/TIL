@@ -6,13 +6,13 @@
 - [Elastic Beanstalk으로 Django 배포하기](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html)  
 - [Docker  ](https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/create_deploy_docker.html)
 
-### AWS Elastic Beanstalk 활용하기  
+## AWS Elastic Beanstalk 활용하기  
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SrwxAScdyT0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 
 Elastic Beanstalk은 Docker외 다른 Application의 배포를 지원하지만, Docker에서 배포 환경 테스트를 마친 후 실제 배포까지 단계를 최소화 해본다. 
 
-### 준비사항  
+## 준비사항  
 - AWS Account(Deployment Environtment)
 	- IAM account(Elastic Beanstalk)
 	- S3 Bucket
@@ -31,37 +31,36 @@ Elastic Beanstalk은 Docker외 다른 Application의 배포를 지원하지만, 
 - Nginx(웹서버)
 - WSGI(웹서버 인터페이스)
 
-### 작업순서
-1. Application 준비: 개발할 어플리케이션(Django) 세팅  
-1-1. 환경설정: 가상환경에 필요한 파일 준비
+## 작업순서
+1. Application 준비: 개발할 어플리케이션(Django) 세팅   
+1-1. 환경설정: 가상환경에 필요한 파일 준비  
 1-2. 모델설정: 유저모델 상속   
-1-3. 비밀설정: 비밀폴더 생성, 비밀파일 관리
-1-4. 버전관리: GIT 생성 / GITIGNORE생성  
-1-5. 데이터베이스/버킷 연결: AWS S3(S3User설정), RDS 연결(보안그룹 설정)
-1-6. Nginx 설치 추가, uWSGI설치 추가
-
+1-3. 비밀설정: 비밀폴더 생성, 비밀파일 관리  
+1-4. 버전관리: GIT 생성 / GITIGNORE생성    
+1-5. 데이터베이스/버킷 연결: AWS S3(S3User설정), RDS 연결(보안그룹 설정)   
 
 	**runserver로 로컬 테스트**
 
 2. Docker 실행   
-2-1. Dockerfile 생성
-2-2. Dockerfile base 생성: 배포용량 최소화
-2-3. Docker Hub에 게시: Dockerfile base push 
+2-1. Dockerfile 생성  
+2-2. Nginx 설치 추가, uWSGI설치 추가  
+2-3. Dockerfile base 생성: 배포용량 최소화  
+2-4. Docker Hub에 게시: Dockerfile base push   
 
 	**Docker 테스트**
 
 3. EB 실행 
-3-1. EB 설치
-3-2. EB 초기화(Dockerfile있는 디렉토리로 이동)
-3-3. IAM 계정 설정 (로컬 시크릿 credential에 적용) 
-3-4. EB deploy
+3-1. EB 설치  
+3-2. EB 초기화(Dockerfile있는 디렉토리로 이동)  
+3-3. IAM 계정 설정 (로컬 시크릿 credential에 적용)   
+3-4. EB deploy   
 
 	**EB 테스트**
 
 
-### 세부내용 
+## 세부내용 
 
-#### 1. Application 세팅 
+### 1. Application 세팅 
 **환경설정**
 
 ~~~
@@ -267,25 +266,24 @@ DATABASES = {
 }
 ~~~
 
-**.gitignore 생성**
+**.gitignore 생성**  
 
 - [gitignore.io](https://www.gitignore.io/)에 접속하여 git, django, pycharm+all, linux, macos 추가하여 생성   
 - 실제 .gitignore파일에 들어간 후 .으로 시작하게될 폴더들도 추가
 
-**버전관리 first commit**
+**버전관리 first commit**  
 - 비밀 내용들이 git에 포함되지 않는것을 확인하였으면 `git init`후 first commit을 실행  
 - `git add .` 처리 후 `git status`를 입력하여 비밀 디렉토리가 추가되지 않은 것을 꼭 확인  
 
 
-**IAM 사용자 설정**
-- 콘솔에서 S3에 접속할 사용자 계정 생성 후 ~/.aws/credentials에 등록 
-- 
+**IAM 사용자 설정**  
+- 콘솔에서 S3에 접속할 사용자 계정 생성 후 ~/.aws/credentials에 등록  
 
-**보안그룹 설정**
+**보안그룹 설정**  
 - 해당 IP에서 접속이 가능하도록 보안그룹 설정, 해당 보안그룹은 추후 RDS에 적용  
 
 
-**AWS에서 RDS 인스턴스 생성, DB 구축하기**
+**AWS에서 RDS 인스턴스 생성, DB 구축하기**  
 
 [AWS Console](https://ap-northeast-2.console.aws.amazon.com/console/home?region=ap-northeast-2)  
 - 콘솔에 접속 후 RDS로 이동, 인스턴스 생성에서 PostgreSQL선택  
@@ -314,7 +312,82 @@ ipython
 > Boto3는 ~/.aws/credential 을 자동으로 찾아서 [default]로 적용된곳으로 이동한다.  
 > 따라서 여러 계정으로 적용중일 경우에는 실수 하지 않도록 주의!   
 
+### 2. Docker 작업 
 
-#### Docker 작업  
+#### Docker 설정  
+- [docker 홈페이지](https://www.docker.com/)에 가서 Docker를 받아 설치한다.  
+- [docker hub](https://hub.docker.com/)에 가입한다.  
+Docker hub는 github와 마찬가지로 Docker repository를 생성할 수 있다.  
 
-최소용량 
+#### 
+
+#### 웹서버와 애플리케이션 서버 인터페이스 구축
+이 항목은 거의 동시에 설정함에 따라 별도 설명을 추가했다.  
+우선 HTTP request들을 처리해줄 nginx를 설정해준다.  
+
+#### nginx 설정
+	
+ROOT_DIR에 app.nginx 생성 
+
+~~~
+# /etc/nginx/sites-available
+server {
+    # listen on port 80
+    listen 80;
+    #domain name localhost
+    server_name localhost;
+    #encoding
+    charset utf-8;
+    #requiest/response max size
+    client_max_body_size 128M;
+
+    #('/' starts) -> responding to all url connection
+    location / {
+        # uwsgi connection using unix socket
+        # "tmp/app.sock" file is used
+        uwsgi_pass unix:///tmp/app.sock;
+        include uwsgi_params;
+    }
+    #ip hashing config.
+    location /static/ {
+        alias /srv/project/.static/;
+    }
+    location /media/ {
+        alias /srv/project/.media/;
+    }
+}
+~~~
+
+`location` 단위로 묶어서 HTTP에서 요청하는 URL 값에 따라 접근 경로를 바꿔서 처리해준다.
+
+ROOT_DIR (`/`)로 접근 할 경우에는 uWSGI로 연결(아래 uWSGI 설정 확인)
+  
+> 최종 목적은 정적 파일들에 접근하는 요청(request)가 왔을 경우에 Django까지 가지 않고 S3 bucket (`/srv/project/.static/`) 으로 이동할 수 있도록 경로 설정  
+
+
+#### uWSGI 설정  
+nginx 와 Django를 연결해줄 인터페이스. 
+uWSGI에 다른 기능들도 있지만 이번 연결에서는 nginx에서 보내주는 데이터 수신을 목표로 한다. 
+
+ROOT_DIR에 ini.uwsgi 생성 
+
+~~~
+[uwsgi]
+;python application dir(django project)
+chdir = /srv/project/app
+; application and wgsi connection module
+wsgi = config.wsgi.production
+;using socket to connect
+socket = /tmp/app.sock
+; auto delete when uWSGI is finished
+vacuum = true
+; socket authority change / user change
+chown-socket = www-data
+~~~
+
+**세부 단계는 아래와 같다.**  
+- docker내에 django가 설치된 위치를 설정  
+- wsgi 불러오기  
+- socket 설정(nginx-uwsgi는 socket으로 통신)  
+- 사용 완료되면 삭제  
+- socker owner를 www-data로 변경   

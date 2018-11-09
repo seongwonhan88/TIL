@@ -391,3 +391,4 @@ chown-socket = www-data
 - socket 설정(nginx-uwsgi는 socket으로 통신)  
 - 사용 완료되면 삭제  
 - socker owner를 www-data로 변경   
+

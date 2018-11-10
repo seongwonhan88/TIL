@@ -319,7 +319,8 @@ ipython
 - [docker hub](https://hub.docker.com/)에 가입한다.  
 Docker hub는 github와 마찬가지로 Docker repository를 생성할 수 있다.  
 
-#### 
+#### Docker내 Web Application 저장 장소
+> 보통 `~/srv/project` 혹은 `~/home/project`에 저장하지만 이번에는 `~/srv/` 안에 저장한다.  
 
 #### 웹서버와 애플리케이션 서버 인터페이스 구축
 이 항목은 거의 동시에 설정함에 따라 별도 설명을 추가했다.  

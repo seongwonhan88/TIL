@@ -393,3 +393,67 @@ chown-socket = www-data
 - 사용 완료되면 삭제  
 - socker owner를 www-data로 변경   
 
+
+### Dockerfile & Dockerfile-base 설정  
+- Dockerfile을 만들어 놓으면 기본 Docker에서 웹애플리케이션을 위한 환경설치 명령어들을 입력해놓고 Build를 시작할 수 있다.  
+- Dockerfile들을 만들면서 반복적으로 설치되는 명령어들을 모아서 Dockerfile-base를 생성하면 시간을 단축할 수 있는 장점이 있다.      
+- 사용량 단위로 과금이 되는 Cloud환경을 사용할 경우 이 점을 꼭 기억하여 효율적으로 활용하는 것이 중요하다.  
+
+
+Dockerfile 과 Dockerfile-base의 모습은 아래와 같다.  
+
+Dockerfile-base
+
+~~~
+FROM python:3.6.7-slim
+MAINTAINER owner@myemail.com
+
+#package upgrade
+RUN apt-get -y update
+RUN apt-get -y dist-upgrade
+RUN apt-get -y install gcc nginx supervisor && \
+    pip3 install uwsgi && \
+    apt -y remove gcc && \
+    apt -y autoremove
+
+# copy requirements
+# if requirements has not changed, pip3 will not install
+COPY requirements_production.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
+~~~
+
+Dockerfile(확장자 없음)  
+
+~~~
+# docker build -t eb:docker -f Dockerfile .
+FROM        owner/eb-docker:base
+ENV         DJANGO_SETTINGS_MODULE  config.settings.production
+
+# copy application source code to deployment folder in docker
+COPY        ./   /srv/project
+WORKDIR     /srv/project
+
+# process commands
+WORKDIR     /srv/project/app
+RUN         python3 manage.py collectstatic --noinput
+
+# delete default Nginx and copy my link setup
+RUN         rm -rf  /etc/nginx/sites-available/* && \
+            rm -rf  /etc/nginx/sites-enabled/* && \
+            cp -f   /srv/project/.config/app.nginx \
+                    /etc/nginx/sites-available/ && \
+            ln -sf  /etc/nginx/sites-available/app.nginx \
+                    /etc/nginx/sites-enabled/app.nginx
+
+# supervisor설정파일 복사
+RUN         cp -f   /srv/project/.config/supervisord.conf \
+                    /etc/supervisor/conf.d/
+
+# 80 port open
+EXPOSE      80
+
+# supervisor run 
+CMD         supervisord -n
+~~~
+
+

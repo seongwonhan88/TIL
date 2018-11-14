@@ -456,4 +456,11 @@ EXPOSE      80
 CMD         supervisord -n
 ~~~
 
+### Docker setup 과정 
+- 기본 OS를 받는다. Docker Hub에 가면 이미 빌드가 완료된 Docker들이 존재한다. Django는 Python 3.6을 필요로 하는 OS가 필요하니 해당 OS를 찾아 Build를 한다.  
+
+> 꼭 Docker의 사이즈는 최소화 하는 것이 중요 
+
+- 웹 애플리케이션을 위해서 필요한 기본 설정들을 Docker에 설치한 과정을 Docker-base에 저장
+- 이 후 Commit 단위에서 재설치/설정이 필요한 명령어들은 Dockerfile에 저장하여 실제 배포 단위는 Dockerfile이 담당
 

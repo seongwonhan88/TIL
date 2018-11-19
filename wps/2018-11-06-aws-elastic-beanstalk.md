@@ -292,6 +292,14 @@ DATABASES = {
 - 보안그룹 설정  
 - secret에 DATABSES를 json으로 저장, settings/dev.py 와 settings/production.py에 동적으로 할당  
 - manage.py makemigration 후 migrate  
+- 생성된 DB에 접속을 원할때는 아래와 같이 접근한다  
+
+~~~
+#command line
+psql --user=[userid] --host=[host..amazonaws.com] [dbname]  
+
+
+~~~
 
 
 **AWS에서 S3 버킷 생성, 스토리지 구축하기** 

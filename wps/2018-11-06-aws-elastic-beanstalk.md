@@ -472,3 +472,7 @@ CMD         supervisord -n
 - 웹 애플리케이션을 위해서 필요한 기본 설정들을 Docker에 설치한 과정을 Docker-base에 저장
 - 이 후 Commit 단위에서 재설치/설정이 필요한 명령어들은 Dockerfile에 저장하여 실제 배포 단위는 Dockerfile이 담당
 
+
+### Storage 설정
+- 미디어 파일 및 정적 파일들을 로컬에 저장 하는 것 대신, S3 Bucket에 저장하기 위해 `storage.py`를 생성한다.  
+- 

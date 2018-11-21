@@ -9,14 +9,11 @@
 <body>
   <p id="demo"></p>
   <script>
-  var x = 16 + "Volvo";
-  //JS will treat 16 as '16'(str)
-  var y = 5 + 5 + "text"
-  // this will result 10text as it operates 5+5 to 10.
-
-  var z = "text" + 5 + 10
-  // but js will return 'text510' as it recognizes numbers as strings
-  document.getElementById("demo").innerHTML = z;
+  var cars = ['bmw', 'mercedes', 'ferrari']
+  // this will printout all values of a list
+  // you can use index to slice
+  document.getElementById("demo").innerHTML = cars[0];
+  // this will only print the first value which is 'bmw'
   </script>
 </body>
 </html>

@@ -9,15 +9,13 @@
 <body>
   <p id="demo"></p>
   <script>
-  var person = {
-    firstname : "seognwon",
-    lastname: 'han',
-    age: '31',
-    height: 171
-  };
-
-  document.getElementById('demo').innerHTML = typeof person
-  // this will return variable type which is 'object'
+    var x = multiply(3,4)
+    function multiply(p1, p2) {
+      return p1 * p2
+    }
+    document.getElementById('demo').innerHTML = multiply;
+    // without () the function is not invoked. it will return the definition
+    // you can declare variable earlier than function.
   </script>
 </body>
 </html>

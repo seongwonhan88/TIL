@@ -7,16 +7,15 @@
   <title>Document</title>
 </head>
 <body>
-  <h2>The ++ Operator</h2>
-
   <p id="demo"></p>
-
   <script>
-  var x = 5;
-  x++;
-  x++;
-  //each declare adds a value to variable
-  var z = x;
+  var x = 16 + "Volvo";
+  //JS will treat 16 as '16'(str)
+  var y = 5 + 5 + "text"
+  // this will result 10text as it operates 5+5 to 10.
+
+  var z = "text" + 5 + 10
+  // but js will return 'text510' as it recognizes numbers as strings
   document.getElementById("demo").innerHTML = z;
   </script>
 </body>

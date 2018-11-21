@@ -9,13 +9,14 @@
 <body>
   <h1 id="myH"></h1>
   <p id="myP"></p>
+  <p id="demo"></p>
   <script>
-  /*
-  This is a multi-line comment block.
-  contents in this block will not appear on browsers
-   */
-    document.getElementById("myH").innerHTML= "JS Comments";
-    document.getElementById("myP").innerHTML= "My first paragraph";
+    var pi = 3.14, person = "John Doe",  answer = "Yes we can";
+    //declare in one statement
+
+    document.getElementById("myH").innerHTML= "Assignment Operator";
+    document.getElementById("myP").innerHTML= "";
+    document.getElementById('demo').innerHTML=pi + "<br>" + person + "<br>" + answer;
   </script>
 
 

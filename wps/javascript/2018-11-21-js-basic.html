@@ -9,11 +9,16 @@
 <body>
   <p id="demo"></p>
   <script>
-  var cars = ['bmw', 'mercedes', 'ferrari']
-  // this will printout all values of a list
-  // you can use index to slice
-  document.getElementById("demo").innerHTML = cars[0];
-  // this will only print the first value which is 'bmw'
+  var person = {
+    firstname : "seognwon",
+    lastname: 'han',
+    age: '31',
+    height: 171
+  };
+
+  document.getElementById('demo').innerHTML = person.firstname + ' is ' + person.height + 'cm tall';
+
+
   </script>
 </body>
 </html>

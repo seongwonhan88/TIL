@@ -7,18 +7,19 @@
   <title>Document</title>
 </head>
 <body>
-  <p id="demo"></p>
-  <script>
-    var person = {
-      name :'seongwon',
-      age : '31',
-      skill: function() {
-        return this.name + this.age;
-      }
-    };
+  <p id="demo"></p><br>
+  <p id="demo2"></p><br>
+  <p id="demo3"></p><br>
 
-    document.getElementById('demo').innerHTML = person['skill']();
-    // either person.name or person['name'] works
+  <script>
+  var str = "Please locate where 'locate' occurs!";
+  var pos = str.indexOf("locate");
+  var lastpos = str.lastIndexOf('locate')
+  var search = str.search('locate')
+  document.getElementById('demo').innerHTML = pos
+  document.getElementById('demo2').innerHTML = lastpos
+  document.getElementById('demo3').innerHTML = search
+
   </script>
 </body>
 </html>

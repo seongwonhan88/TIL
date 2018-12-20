@@ -1,0 +1,4 @@
+Django==2.1.4
+djangorestframework==3.9.0
+djangorestframework-recursive==0.1.2
+pytz==2018.7
